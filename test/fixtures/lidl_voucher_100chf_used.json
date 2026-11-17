@@ -1,0 +1,14 @@
+{
+  "description": "Real Lidl Schweiz PDF voucher, fully redeemed before being added to the repo (owner-approved test fixture). Source file: lidl_voucher_100chf_used.pdf (2292333.pdf).",
+  "sourceUrl": "https://www.lidl.ch/ (voucher PDF download)",
+  "printedCardNumber": "2112 2462 7680 2960 28",
+  "printedCardNumberDigits": "211224627680296028",
+  "printedCardNumberLength": 18,
+  "pin": "7195",
+  "value": { "amount": 100.0, "currency": "CHF" },
+  "barcodeNumberCandidate": "200000000018022770",
+  "serial": "200000000018022770",
+  "expectedBalanceState": "fully spent: live check (Nov 2026) returns balance.amount=0 and status stays 'ACTIVE' (page shows 'Aktiv') — redemption is signalled by the 0.00 balance, not the status word",
+  "balanceCheckUrl": "https://www.lidl.ch/c/de-CH/guthabenabfrage-fuer-einkaufsgutscheine/s10077601",
+  "termsExpiry": "5 years after activation, no cash payout, card not replaced when lost"
+}

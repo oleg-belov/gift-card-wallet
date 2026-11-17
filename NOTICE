@@ -1,0 +1,55 @@
+Gift Card Wallet
+Copyright 2026 the Gift Card Wallet contributors
+
+This product is licensed under the Apache License, Version 2.0
+(see LICENSE).
+
+======================================================================
+UNOFFICIAL APP FOR PERSONAL USE ONLY
+======================================================================
+
+Gift Card Wallet is an independent app for managing Lidl Switzerland
+gift cards. The app is intended strictly for personal use. It has no
+affiliation with or endorsement from Lidl, Lidl Schweiz, or Schwarz Gruppe.
+
+"Lidl", the Lidl logo, and all related names, brands, and trademarks
+are the property of their respective owners and are used in this
+project solely for identification purposes, describing what the app
+works with. No endorsement is implied.
+
+The app reads data from Lidl's public balance-check web page on behalf
+of the user and stores gift-card data locally on the user's own device.
+No data is collected, transmitted, or shared by the authors. Use of the
+Lidl brand names by third parties in this repository does not constitute
+a trademark infringement claim waiver or a license to use those marks.
+
+======================================================================
+THIRD-PARTY COMPONENTS
+======================================================================
+
+Bundled fonts (assets/fonts/):
+- Space Grotesk — SIL Open Font License 1.1 (OFL-SpaceGrotesk.txt)
+- DM Sans — SIL Open Font License 1.1 (OFL-DMSans.txt)
+
+Dart/Flutter packages (see pubspec.yaml for versions; each under its
+own license, summarized here):
+- Flutter, flutter_localizations, integration_test — BSD 3-Clause
+  (Google LLC)
+- flutter_riverpod — MIT
+- sqflite, sqflite_common_ffi — MIT
+- path — BSD 3-Clause
+- mobile_scanner — MIT
+- barcode_widget — MIT
+- file_picker — MIT
+- cronet_http, http — BSD 3-Clause
+- flutter_inappwebview — LGPL-3.0 (used unmodified as a dependency)
+- cryptography, cryptography_flutter — Apache 2.0
+- screen_brightness — MIT
+- intl — BSD 3-Clause
+- flutter_lints — BSD 3-Clause
+- cryptography: Font Awesome icons used by material icon font are
+  licensed CC BY 4.0.
+
+Gift-card data used in the automated tests (test/fixtures/) belongs to
+the project author and was fully redeemed before publication; it is
+included as inert test evidence only.
