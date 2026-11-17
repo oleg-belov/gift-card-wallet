@@ -13,7 +13,7 @@
 # repaired or re-downloaded — re-run this script after that.
 set -euo pipefail
 
-FILE="$HOME/.pub-cache/hosted/pub.dev/cryptography_flutter-2.3.4/android/src/main/kotlin/dev/dint/cryptography_flutter/CryptographyFlutterPlugin.kt"
+FILE="${PUB_CACHE:-$HOME/.pub-cache}/hosted/pub.dev/cryptography_flutter-2.3.4/android/src/main/kotlin/dev/dint/cryptography_flutter/CryptographyFlutterPlugin.kt"
 
 if [[ ! -f "$FILE" ]]; then
   echo "Not found: $FILE"

@@ -1,0 +1,44 @@
+name: Flutter CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  flutter:
+    name: Analyze, test, and build Android
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Flutter and Java with Mise
+        uses: jdx/mise-action@236a21c3b91f5db6d4e174b348674a0f0caac06d # v5.2.9
+        with:
+          version: '2026.11.9'
+          cache: false
+
+      - name: Install Dart dependencies
+        run: mise exec -- flutter pub get --enforce-lockfile
+
+      - name: Analyze
+        run: mise exec -- flutter analyze --no-pub
+
+      - name: Run host tests
+        run: mise exec -- flutter test --no-pub --reporter expanded
+
+      - name: Build Android debug APK
+        run: |
+          tool/patch_inappwebview_proguard.sh
+          tool/patch_cryptography_pbkdf2_thread.sh
+          mise exec -- flutter build apk --debug --no-pub

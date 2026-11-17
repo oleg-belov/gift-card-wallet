@@ -144,17 +144,24 @@ during setup.
 
 ## Build & run
 
-Requirements: Flutter 3.44+, JDK 25 (works with the pinned AGP), Android
-minSdk 24, an `ANDROID_HOME` with the platform tools.
+Install [Mise](https://mise.jdx.dev/installing-mise.html), Python 3, and
+the Android SDK with platform tools. Set `ANDROID_HOME` to the SDK directory.
+The app supports Android API 24 and later. [`mise.toml`](mise.toml) pins
+the Flutter SDK and JDK used locally and in CI.
 
 ```bash
-flutter pub get
+mise install
+mise exec -- flutter pub get --enforce-lockfile
 tool/patch_inappwebview_proguard.sh        # see note below
 tool/patch_cryptography_pbkdf2_thread.sh   # see note below
-flutter analyze && flutter test
-flutter build apk --debug                  # or --release
+mise exec -- flutter analyze --no-pub
+mise exec -- flutter test --no-pub
+mise exec -- flutter build apk --debug --no-pub
 adb install build/app/outputs/flutter-apk/app-debug.apk
 ```
+
+GitHub Actions runs analysis, host tests, and the Android debug build for
+pull requests to `main` and pushes to `main`.
 
 ### pub-cache patches
 
@@ -165,9 +172,9 @@ Gradle Plugins reject. `tool/patch_inappwebview_proguard.sh` rewrites it to
 crypto (PBKDF2!) inside Android `onMethodCall` — i.e. on the **main
 thread** — which freezes the UI for seconds and trips the ANR dialog on
 cold-start unlock; `tool/patch_cryptography_pbkdf2_thread.sh` moves the
-dispatch to a worker thread. Both patches live in the pub cache and are
-lost whenever it is repaired — re-run them after `flutter pub get` if the
-build fails.
+dispatch to a worker thread. Both scripts patch the dependency copies in
+`PUB_CACHE`, which defaults to `~/.pub-cache`. Re-run them after repairing
+the cache or downloading the packages again.
 
 ## Automated tests
 
